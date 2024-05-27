@@ -7,19 +7,19 @@ data class FoodInformationResponse(
     @Json(name = "id") val id: Int,
     @Json(name = "title") val title: String,
     @Json(name = "breadcrumbs") val breadcrumbs: List<String>,
-    @Json(name = "imageType") val imageType: String,
-    @Json(name = "badges") val badges: List<String>,
-    @Json(name = "importantBadges") val importantBadges: List<String>,
+    //@Json(name = "imageType") val imageType: String,
+    //@Json(name = "badges") val badges: List<String>,
+    //@Json(name = "importantBadges") val importantBadges: List<String>,
     @Json(name = "ingredientCount") val ingredientCount: Int,
-    @Json(name = "generatedText") val generatedText: String?, // Nullable
+    //@Json(name = "generatedText") val generatedText: String?, // Nullable
     @Json(name = "ingredientList") val ingredientList: String,
     @Json(name = "ingredients") val ingredients: List<Ingredient>,
-    @Json(name = "likes") val likes: Int,
-    @Json(name = "aisle") val aisle: String,
+    //@Json(name = "likes") val likes: Int,
+    //@Json(name = "aisle") val aisle: String,
     @Json(name = "nutrition") val nutrition: Nutrition,
-    @Json(name = "price") val price: Double,
+    //@Json(name = "price") val price: Double,
     //@Json(name = "servings") val servings: Servings,
-    @Json(name = "spoonacularScore") val spoonacularScore: Double
+    //@Json(name = "spoonacularScore") val spoonacularScore: Double
 )
 
 @JsonClass(generateAdapter = true)

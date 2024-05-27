@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 import android.content.Context
+import android.content.Intent
 import android.view.inputmethod.InputMethodManager
 
 
@@ -56,22 +57,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showNutritionInfo(foodItem: FoodItem) {
-        lifecycleScope.launch {
-            try {
-                val nutrition = RetrofitClient.api.getNutrition(foodItem.id, apiKey)
-                // Extracting calories
-                val caloriesNutrient = nutrition.nutrition.nutrients.find { it.name.equals("Calories", ignoreCase = true) }
-                if (caloriesNutrient != null) {
-                    // Displaying calories
-                    Toast.makeText(this@MainActivity, "Calories: ${caloriesNutrient.amount} ${caloriesNutrient.unit}", Toast.LENGTH_LONG).show()
-                } else {
-                    Toast.makeText(this@MainActivity, "Calories information not available", Toast.LENGTH_SHORT).show()
-                }
-            } catch (e: Exception) {
-                Toast.makeText(this@MainActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
-            }
+        val intent = Intent(this, NutritionDetailActivity::class.java).apply {
+            putExtra("FOOD_ITEM_ID", foodItem.id)
         }
+        startActivity(intent)
     }
+
     private fun hideKeyboard() {
         val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
