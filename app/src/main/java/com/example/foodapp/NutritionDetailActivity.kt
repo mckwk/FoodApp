@@ -39,14 +39,15 @@ class NutritionDetailActivity : AppCompatActivity() {
         lifecycleScope.launch {
             try {
                 val nutritionResponse = RetrofitClient.api.getNutrition(foodItemId, apiKey)
-                val nutrition = nutritionResponse.nutrition
+                val nutrition = nutritionResponse.nutrition.nutrients
 
                 val foodName = nutritionResponse.title
-                val caloriesNutrient = nutrition.nutrients.find { it.name.equals("Calories", ignoreCase = true) }
-                val fatNutrient = nutrition.nutrients.find { it.name.equals("Fat", ignoreCase = true) }
-                val proteinNutrient = nutrition.nutrients.find { it.name.equals("Protein", ignoreCase = true) }
-                val carbsNutrient = nutrition.nutrients.find { it.name.equals("Carbohydrates", ignoreCase = true) }
-                val ingredients = nutritionResponse.ingredients.joinToString(", ") { it.name }
+                val caloriesNutrient = nutrition.find { it.name.equals("Calories", ignoreCase = true) }
+                val fatNutrient = nutrition.find { it.name.equals("Fat", ignoreCase = true) }
+                val proteinNutrient = nutrition.find { it.name.equals("Protein", ignoreCase = true) }
+                val carbsNutrient = nutrition.find { it.name.equals("Carbohydrates", ignoreCase = true) }
+                //val ingredients = nutritionResponse.ingredients.joinToString(", ") { it.name }
+                val ingredients = nutritionResponse.ingredientList
 
                 foodNameTextView.text = foodName
                 ingredientsTextView.text = "Ingredients: " + ingredients

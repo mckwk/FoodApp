@@ -34,6 +34,6 @@ interface SpoonacularApi {
         @Path("id") id: Int,
         @Query("apiKey") apiKey: String,
         @Query("amount") amount: Int = 1,
-        @Query("shoppingListUnits") shoppingListUnits: Int = 1
+        //@Query("shoppingListUnits") shoppingListUnits: Int = 1
         ): FoodInformationResponse
 }
