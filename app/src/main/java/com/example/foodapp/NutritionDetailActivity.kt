@@ -50,7 +50,11 @@ class NutritionDetailActivity : AppCompatActivity() {
                 val ingredients = nutritionResponse.ingredientList
 
                 foodNameTextView.text = foodName
-                ingredientsTextView.text = "Ingredients: " + ingredients
+                if (ingredients.isNotEmpty()) {
+                    ingredientsTextView.text = "Ingredients: $ingredients"
+                } else {
+                    ingredientsTextView.text = ""
+                }
 
                 caloriesNutrient?.let {
                     caloriesTextView.text = "Calories: ${it.amount} ${it.unit}"
